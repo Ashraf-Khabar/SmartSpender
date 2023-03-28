@@ -2,6 +2,7 @@ import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find({}, { id: 1, name: 1, email: 1 });
