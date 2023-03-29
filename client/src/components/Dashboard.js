@@ -3,7 +3,7 @@ import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useHistory } from 'react-router-dom';
 
-const Dashboard = () => {
+const Dashboard = ({ darkModeValue }) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -56,7 +56,7 @@ const Dashboard = () => {
     }
 
     return (
-        <div className="container mt-5">
+        <div data-theme={darkModeValue} className="container mt-5">
             <h1>Welcome Back: {name}</h1>
             <table className="table is-striped is-fullwidth">
                 <thead>

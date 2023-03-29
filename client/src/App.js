@@ -17,7 +17,7 @@ function App() {
         <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked}  />
         <Switch>
           <Route exact path="/">
-            <Login />
+            <Login darkModeValue={darkModeValue} />
           </Route>
           <Route path="/register">
             <Register />

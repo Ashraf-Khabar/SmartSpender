@@ -17,6 +17,34 @@ const userSchema = new mongoose.Schema({
   refresh_token: {
     type: String,
     default: null
+  },
+  marital_status: {
+    type: String
+  },
+  children: {
+    type: Number
+  },
+  credits: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Credit'
+    }
+  ],
+  expenses: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Expense'
+    }
+  ],
+  divisions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Division'
+    }
+  ],
+  role: {
+    type: String,
+    default: 'user'
   }
 }, {
   timestamps: true

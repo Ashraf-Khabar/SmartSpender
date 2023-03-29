@@ -44,7 +44,7 @@ const Login = () => {
                                     </div>
                                 </div>
                                 <div className="field mt-5">
-                                    <button className="button is-success is-fullwidth">Login</button>
+                                    <button className="btn btn-outline btn-secondary">Login</button>
                                 </div>
                             </form>
                         </div>
