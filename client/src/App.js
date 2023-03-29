@@ -3,23 +3,31 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
+import styles from "./index.css";
+import { useState } from "react";
 
 function App() {
+
+  const [isChecked, setIsChecked] = useState(false);
+  const [darkModeValue, setDarkModeValue] = useState('cupcake');
+
   return (
+    <>
       <BrowserRouter>
+        <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked}  />
         <Switch>
           <Route exact path="/">
-            <Login/>
+            <Login />
           </Route>
           <Route path="/register">
-            <Register/>
+            <Register />
           </Route>
           <Route path="/dashboard">
-            <Navbar/>
-            <Dashboard/>
+            <Dashboard />
           </Route>
         </Switch>
       </BrowserRouter>
+    </>
   );
 }
 
