@@ -56,27 +56,32 @@ const Dashboard = ({ darkModeValue }) => {
     }
 
     return (
-        <div data-theme={darkModeValue} className="container mt-5">
-            <h1>Welcome Back: {name}</h1>
-            <table className="table is-striped is-fullwidth">
-                <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                {users.map((user, index) => (
-                    <tr key={user.id}>
-                        <td>{index + 1}</td>
-                        <td>{user.name}</td>
-                        <td>{user.email}</td>
-                    </tr>
-                ))}
+        <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+            <center>
+                <h1>{name}</h1><br />
+                <div className="overflow-x-auto">
+                    <table className="table table-compact w-full">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.map((user, index) => (
+                                <tr key={user.id}>
+                                    <td>{index + 1}</td>
+                                    <td>{user.name}</td>
+                                    <td>{user.email}</td>
+                                </tr>
+                            ))}
 
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                </div>
+
+            </center>
         </div>
     )
 }

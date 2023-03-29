@@ -23,7 +23,7 @@ function App() {
             <Register />
           </Route>
           <Route path="/dashboard">
-            <Dashboard />
+            <Dashboard darkModeValue={darkModeValue} />
           </Route>
         </Switch>
       </BrowserRouter>
