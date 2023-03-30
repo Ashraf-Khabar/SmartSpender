@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ darkModeValue }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
@@ -25,32 +25,35 @@ const Login = () => {
 
     return (
         <section className="hero has-background-grey-light is-fullheight is-fullwidth">
-            <div className="hero-body">
-                <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-4-desktop">
-                            <form onSubmit={Auth} className="box">
-                                <p className="has-text-centered">{msg}</p>
-                                <div className="field mt-5">
-                                    <label className="label">Email or Username</label>
-                                    <div className="controls">
-                                        <input type="text" className="input" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+                <div className="hero-body">
+                    <div className="container">
+                        <div className="columns is-centered">
+                            <div className="column is-4-desktop">
+                                <form onSubmit={Auth} className="box">
+                                    <p className="has-text-centered">{msg}</p>
+                                    <div className="field mt-5">
+                                        <label className="label">Email or Username</label>
+                                        <div className="controls">
+                                            <input type="text" className="input" placeholder="Username" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="field mt-5">
-                                    <label className="label">Password</label>
-                                    <div className="controls">
-                                        <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                    <div className="field mt-5">
+                                        <label className="label">Password</label>
+                                        <div className="controls">
+                                            <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="field mt-5">
-                                    <button className="btn btn-outline btn-secondary">Login</button>
-                                </div>
-                            </form>
+                                    <div className="field mt-5">
+                                        <button className="btn btn-outline btn-secondary">Login</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </section>
     )
 }
