@@ -53,7 +53,6 @@ const Login = ({ darkModeValue }) => {
                     </div>
                 </div>
             </div>
-
         </section>
     )
 }
