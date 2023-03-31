@@ -24,7 +24,7 @@ const Dashboard = ({ darkModeValue }) => {
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
-                history.push("/");
+                history.push("/login");
             }
         }
     }

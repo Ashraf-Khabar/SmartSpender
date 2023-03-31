@@ -40,7 +40,9 @@ const Navbar = ({ isChecked, setIsChecked, darkModeValue, setDarkModeValue }) =>
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to='/' className="btn btn-ghost normal-case text-xl">MONEY-TIME</Link>
+                <Link to='/' className="btn btn-ghost normal-case text-xl">
+                    SMART-SPENDER
+                </Link>
             </div>
             <div className="navbar-end">
                 <label className="swap swap-rotate">

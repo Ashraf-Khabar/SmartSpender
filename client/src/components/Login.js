@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login = ({ darkModeValue }) => {
     const [email, setEmail] = useState('');
@@ -28,7 +28,12 @@ const Login = ({ darkModeValue }) => {
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <p className="py-6">
+                        Welcome, Please log in to access your budget management dashboard. 
+                        If you don't have an account yet, you can easily sign up by clicking the <Link to='/signup' className="link link-success">Sign Up</Link> button. 
+                        Once you're logged in, you'll be able to track your expenses, set your monthly budget, 
+                        and receive alerts when you're getting close to your limit. We take your data privacy seriously and use advanced security measures to keep your information safe. If you have any questions or concerns, please don't hesitate to contact our support team.
+                    </p>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     {msg && 
