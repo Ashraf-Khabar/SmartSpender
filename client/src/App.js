@@ -6,6 +6,7 @@ import Register from "./components/Register";
 import Home from "./components/Home";
 import styles from "./index.css";
 import { useState } from "react";
+import Footer from "./components/Footer";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
             <Dashboard darkModeValue={darkModeValue} />
           </Route>
         </Switch>
+        <Footer darkModeValue={darkModeValue} />
       </BrowserRouter>
     </>
   );
