@@ -88,7 +88,7 @@ const Setting = ({ darkModeValue }) => {
             </div>
 
             <div class="main-content">
-                {myAccount && <MyAccount />}
+                {myAccount && <MyAccount darkModeValue={darkModeValue} />}
             </div>
 
         </div>
