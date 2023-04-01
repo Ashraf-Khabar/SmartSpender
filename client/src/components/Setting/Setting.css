@@ -1,0 +1,39 @@
+/* Default styles */
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 300px;
+    /* Other styles for sidebar */
+}
+
+.main-content {
+    flex: 1;
+    /* Other styles for main content */
+}
+
+.sidebar-toggle {
+    display: none;
+    /* Other styles for toggle button */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+}
+
+.btn-primary {
+    margin-right: 10px;
+}

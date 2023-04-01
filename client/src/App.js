@@ -7,6 +7,7 @@ import Home from "./components/Home";
 import styles from "./index.css";
 import { useState } from "react";
 import Footer from "./components/Footer";
+import Setting from "./components/Setting/Setting";
 
 function App() {
 
@@ -19,7 +20,7 @@ function App() {
       <BrowserRouter>
         <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked} userId={userId} setUserId={setUserId} />
         <Switch>
-        <Route exact path="/">
+          <Route exact path="/">
             <Home darkModeValue={darkModeValue} />
           </Route>
           <Route exact path="/login">
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <Dashboard darkModeValue={darkModeValue} />
+          </Route>
+          <Route path="/Setting">
+            <Setting darkModeValue={darkModeValue} />
           </Route>
         </Switch>
         <Footer darkModeValue={darkModeValue} />

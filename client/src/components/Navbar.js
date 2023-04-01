@@ -89,7 +89,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
                                             <span>{userName}</span>
                                         </button>
                                     </li>
-                                    <li><button className="">Settings</button></li>
+                                    <li><Link to='/Setting' className="">Settings</Link></li>
                                     <li><button onClick={Logout} className="l" >Logout</button></li>
                                 </ul>
                             </div>
