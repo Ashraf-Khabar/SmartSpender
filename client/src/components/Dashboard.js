@@ -10,6 +10,8 @@ const Dashboard = ({ darkModeValue }) => {
     const [users, setUsers] = useState([]);
     const history = useHistory();
 
+    
+    
     useEffect(() => {
         refreshToken();
         getUsers();

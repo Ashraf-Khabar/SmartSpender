@@ -3,10 +3,27 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import swal from 'sweetalert';
 
 const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, setDarkModeValue }) => {
     const history = useHistory();
     const [userName, setUserName] = useState('');
+
+    function showAlert() {
+        swal({
+            title: "Logout !",
+            text: "Are you sure you want to Lougout",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Logout succesffully", "Logout", "success");
+                    Logout();
+                }
+            });
+    }
 
     const Logout = async () => {
         try {
@@ -24,6 +41,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
             const decoded = jwt_decode(response.data.accessToken);
             setUserId(decoded.userId);
             setUserName(decoded.name);
+            
         } catch (error) {
             if (error.response) {
                 history.push("/");
@@ -33,7 +51,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
 
     useEffect(() => {
         refreshToken();
-    }, [userId, userName]);
+    }, [userId]);
 
     function handleCheckboxChange(event) {
         setIsChecked(event.target.checked);
@@ -90,7 +108,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
                                         </button>
                                     </li>
                                     <li><Link to='/Setting' className="">Settings</Link></li>
-                                    <li><button onClick={Logout} className="l" >Logout</button></li>
+                                    <li><button onClick={showAlert} className="l" >Logout</button></li>
                                 </ul>
                             </div>
                         )

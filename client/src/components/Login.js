@@ -10,12 +10,15 @@ const Login = ({ darkModeValue }) => {
 
     const Auth = async (e) => {
         e.preventDefault();
+        
         try {
             await axios.post('http://localhost:5000/login', {
                 email: email,
                 password: password
             });
             history.push("/dashboard");
+            window.location.reload();
+            
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
