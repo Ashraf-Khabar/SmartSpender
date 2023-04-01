@@ -11,12 +11,13 @@ import Footer from "./components/Footer";
 function App() {
 
   const [isChecked, setIsChecked] = useState(false);
-  const [darkModeValue, setDarkModeValue] = useState('cupcake');
+  const [darkModeValue, setDarkModeValue] = useState('forest');
+  const [userId, setUserId] = useState(null);
 
   return (
     <>
       <BrowserRouter>
-        <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked}  />
+        <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked} userId={userId} setUserId={setUserId} />
         <Switch>
         <Route exact path="/">
             <Home darkModeValue={darkModeValue} />
