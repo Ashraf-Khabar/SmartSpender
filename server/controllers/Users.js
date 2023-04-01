@@ -2,10 +2,20 @@ import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+export const Upload = async (req, res) => {
+  const body = req.body;
+  try {
+    const newImage = await User.create(body);
+    newImage.save();
+    res.status(201).json({ msg: "new image uploaded" });
+  } catch (error) {
+    res.status(409).json({ msg: error.message });
+  }
+};
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await User.find({}, { id: 1, name: 1, email: 1 });
+    const users = await User.find({});
     res.json(users);
   } catch (error) {
     console.log(error);
