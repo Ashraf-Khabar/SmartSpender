@@ -9,17 +9,13 @@ const Setting = ({ darkModeValue }) => {
         setMyAccount(true);
     }
 
-
     function toggleSidebar() {
         var sidebar = document.querySelector('.sidebar');
         sidebar.classNameList.toggle('sidebar-hidden');
     }
 
-
     return (
-
         <div className="container">
-
             <div className="sidebar">
                 <div data-theme={darkModeValue} className="relative">
                     <div className="flex flex-col sm:flex-row sm:justify-around">
@@ -88,7 +84,7 @@ const Setting = ({ darkModeValue }) => {
             </div>
 
             <div className="main-content">
-                {myAccount && <MyAccount darkModeValue={darkModeValue} />}
+                {<MyAccount darkModeValue={darkModeValue} />}
             </div>
 
         </div>
