@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/users', verifyToken, getUsers);
 router.post('/users', Register);
 router.post('/login', Login);
-router.post('/upload', Upload);
+router.post('/upload/:email', Upload);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
 router.get('/getImage/:email', getUserImage)
