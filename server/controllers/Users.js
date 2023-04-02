@@ -3,9 +3,9 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const Upload = async (req, res) => {
-  const { image, id } = req.body;
+  const { image, email } = req.body;
   try {
-    const user = await User.findById(id).maxTimeMS(200000);
+    const user = await User.findOne({ email }).maxTimeMS(200000);
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     }
@@ -17,6 +17,25 @@ export const Upload = async (req, res) => {
   }
 };
 
+export const getUserImage = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    if (!user.image) {
+      return res.status(404).send('User image not found');
+    }
+
+    const buffer = Buffer.from(user.image, 'base64');
+    res.set('Content-Type', 'image/png');
+    res.send(buffer);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+};
 
 export const getUsers = async (req, res) => {
   try {

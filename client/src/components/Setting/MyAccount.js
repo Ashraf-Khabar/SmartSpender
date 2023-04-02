@@ -1,14 +1,17 @@
 import Avatar from '../../img/avatar.PNG';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from 'axios';
 
 const MyAccount = ({ darkModeValue }) => {
 
     const [postImage, setPostImage] = useState({ image: "" });
+    const [userImage, setUserImage] = useState();
 
     const createPost = async (image) => {
         try {
-            await axios.post('http://localhost:5000/upload', image);
+            const email = "khabarachraf@gmail.com"
+            await axios.post('http://localhost:5000/upload', {image, email});
+            console.log("Uploaded");
         } catch (error) {
             console.log(error);
         }
@@ -36,9 +39,22 @@ const MyAccount = ({ darkModeValue }) => {
     const handleFileUpload = async (e) => {
         const file = e.target.files[0];
         const base64 = await convertToBase64(file);
-        setPostImage({ ...postImage, image: base64.data });
+        setPostImage({ ...postImage, image: base64 });
         console.log(`Result : ${base64}`);
     }
+
+    useEffect(() => {
+        const getUserImage = async () => {
+            try {
+                const email = "khabarachraf@gmail.com";
+                const response = await axios.get(`http://localhost:5000/getImage/${email}`);
+                setUserImage(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getUserImage();
+    }, []);
 
 
     return (
@@ -52,7 +68,7 @@ const MyAccount = ({ darkModeValue }) => {
                         <div className="flex -mx-3" >
                             <div className="w-full px-3 mb-5">
                                 <div htmlFor="image-upload" className="w-24 rounded">
-                                    <img src={postImage.image && Avatar} /><br />
+                                    <img src={userImage || Avatar} /><br />
                                 </div>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
@@ -76,7 +92,7 @@ const MyAccount = ({ darkModeValue }) => {
                                 <label className="text-xs font-semibold px-1">Name</label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                    <input type="email" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none" placeholder="johnsmith@example.com"></input>
+                                    <input type="email" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none" placeholder=""></input>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +101,7 @@ const MyAccount = ({ darkModeValue }) => {
                                 <label className="text-xs font-semibold px-1">Email</label>
                                 <div className="flex">
                                     <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"><i className="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
-                                    <input type="email" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none" placeholder="johnsmith@example.com"></input>
+                                    <input type="email" className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none" placeholder="achrafkhabar@gmail.com"></input>
                                 </div>
                             </div>
                         </div>
