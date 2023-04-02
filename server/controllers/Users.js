@@ -3,15 +3,20 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const Upload = async (req, res) => {
-  const body = req.body;
+  const { image, id } = req.body;
   try {
-    const newImage = await User.create(body);
-    newImage.save();
-    res.status(201).json({ msg: "new image uploaded" });
+    const user = await User.findById(id).maxTimeMS(200000);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    user.image = image;
+    await user.save();
+    res.status(200).json({ msg: "User updated successfully" });
   } catch (error) {
-    res.status(409).json({ msg: error.message });
+    res.status(400).json({ msg: error.message });
   }
 };
+
 
 export const getUsers = async (req, res) => {
   try {
