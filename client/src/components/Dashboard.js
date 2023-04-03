@@ -59,7 +59,6 @@ const Dashboard = ({ darkModeValue }) => {
         <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
             <center>
                 <h1>{name}</h1><br />
-
             </center>
         </div>
     )

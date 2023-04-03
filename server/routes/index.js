@@ -16,7 +16,7 @@ router.delete('/logout', Logout);
 router.get('/getImage/:email', getUserImage)
 
 /*Division routing*/
-router.put('/:userId/divisions/:divisionId', UpdateDivision);
+router.put('/:userId/divisions/:divisionId', verifyToken, UpdateDivision);
 router.post('/:userId/divisions', AddDivision);
 
 export default router;

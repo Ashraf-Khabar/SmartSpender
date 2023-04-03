@@ -1,7 +1,8 @@
 import User from "../models/UserModel.js";
 import Division from "../models/DivisionModel.js";
 
-export const AddDivision = async (req, res) => {
+
+/* export const AddDivision = async (req, res) => {
     const { category, budget } = req.body;
 
     const division = new Division({
@@ -21,7 +22,38 @@ export const AddDivision = async (req, res) => {
                 error,
             });
         });
+};*/
+
+export const AddDivision = async (req, res) => {
+    const { category, budget } = req.body;
+    const userId = req.params.userId;
+
+    const division = new Division({
+        category,
+        budget,
+        user: userId
+    });
+
+    division.save()
+        .then((result) => {
+            // Add the division ID to the user's divisions array
+            User.findByIdAndUpdate(userId, {
+                $push: { divisions: result._id }
+            }).exec();
+
+            res.status(201).json({
+                message: 'Division added successfully',
+                division: result,
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                error,
+            });
+        });
 };
+
+
 
 export const UpdateDivision = async (req, res) => {
     try {
