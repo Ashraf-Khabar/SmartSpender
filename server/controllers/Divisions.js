@@ -1,20 +1,26 @@
 import User from "../models/UserModel.js";
+import Division from "../models/DivisionModel.js";
 
 export const AddDivision = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.userId);
-        if (!user) {
-            return res.status(404).json({ message: 'Utilisateur non trouvé' });
-        }
-        const { category, budget } = req.body;
-        const division = { category, budget };
-        user.divisions.push(division);
-        await user.save();
-        res.json(division);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ message: 'Erreur serveur' });
-    }
+    const { category, budget } = req.body;
+
+    const division = new Division({
+        category,
+        budget,
+    });
+
+    division.save()
+        .then((result) => {
+            res.status(201).json({
+                message: 'Division added successfully',
+                division: result,
+            });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                error,
+            });
+        });
 };
 
 export const UpdateDivision = async (req, res) => {
