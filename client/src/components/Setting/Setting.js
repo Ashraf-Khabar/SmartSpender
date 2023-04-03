@@ -1,9 +1,19 @@
 import './Setting.css';
 import MyAccount from './MyAccount';
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import Avatar from '../../img/avatar.PNG';
+import {useHistory} from "react-router-dom";
+
 
 const Setting = ({ darkModeValue }) => {
     const [myAccount, setMyAccount] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState("");
+    const [userImage, setUserImage] = useState();
+    const history = useHistory();
+
 
     const handleClickMyProfile = (className) => {
         setMyAccount(true);
@@ -14,6 +24,38 @@ const Setting = ({ darkModeValue }) => {
         sidebar.classNameList.toggle('sidebar-hidden');
     }
 
+    useEffect(() => {
+        const getUserImage = async () => {
+            try {
+                console.log(userEmail);
+                const response = await axios.get(`http://localhost:5000/getImage/${userEmail}`);
+                console.log(response.data);
+                setUserImage(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getUserImage();
+    }, [userEmail]);
+
+    const refreshToken = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/token');
+            const decoded = jwt_decode(response.data.accessToken);
+            setUserEmail(decoded.email);
+            setUserName(decoded.name);
+
+        } catch (error) {
+            if (error.response) {
+                history.push("/");
+            }
+        }
+    }
+
+    useEffect(() => {
+        refreshToken();
+    }, [userEmail, userImage, userName]);
+
     return (
         <div className="container">
             <div className="sidebar">
@@ -23,10 +65,10 @@ const Setting = ({ darkModeValue }) => {
                             <div className="flex items-center justify-start mx-6 mt-10">
                                 <div className="avatar">
                                     <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                        <img src={userImage || Avatar} />
                                     </div>
                                 </div>
-                                &emsp;&emsp;<div className="badge badge-primary">Achraf khabar</div>
+                                &emsp;&emsp;<div className="badge badge-primary">{userName}</div>
                             </div>
                             <nav className="mt-10 px-6 ">
                                 <button onClick={handleClickMyProfile} className="py-2 px-4 flex justify-center items-center  btn-outline btn-primary focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">

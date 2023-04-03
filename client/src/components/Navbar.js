@@ -4,10 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { Link } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import swal from 'sweetalert';
+import Avatar from '../img/avatar.PNG';
 
 const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, setDarkModeValue }) => {
     const history = useHistory();
     const [userName, setUserName] = useState('');
+    const [userEmail, setUserEmail] = useState("");
+    const [userImage, setUserImage] = useState();
+
 
     function showAlert() {
         swal({
@@ -35,11 +39,26 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
         }
     }
 
+    useEffect(() => {
+        const getUserImage = async () => {
+            try {
+                console.log(userEmail);
+                const response = await axios.get(`http://localhost:5000/getImage/${userEmail}`);
+                console.log(response.data);
+                setUserImage(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getUserImage();
+    }, [userEmail]);
+
     const refreshToken = async () => {
         try {
             const response = await axios.get('http://localhost:5000/token');
             const decoded = jwt_decode(response.data.accessToken);
             setUserId(decoded.userId);
+            setUserEmail(decoded.email);
             setUserName(decoded.name);
             
         } catch (error) {
@@ -51,7 +70,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
 
     useEffect(() => {
         refreshToken();
-    }, [userId]);
+    }, [userId, userEmail]);
 
     function handleCheckboxChange(event) {
         setIsChecked(event.target.checked);
@@ -97,7 +116,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
-                                        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                        <img src={userImage || Avatar} />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
