@@ -96,7 +96,7 @@ const Navbar = ({ userId, setUserId, isChecked, setIsChecked, darkModeValue, set
                 </div>
             </div>
             <div className="navbar-center">
-                <Link to='/' className="btn btn-ghost normal-case text-xl">
+                <Link to='/dashboard' className="btn btn-ghost normal-case text-xl">
                     SMART-SPENDER
                 </Link>
             </div>

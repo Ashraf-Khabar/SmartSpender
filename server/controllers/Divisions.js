@@ -59,7 +59,9 @@ export const UpdateDivision = async (req, res) => {
 };
 
 export const GetDivisions = async (req, res) => {
-    Division.find()
+    const userId = req.params.userId;
+
+    Division.find({ user: userId })
         .populate('user', 'name')
         .exec()
         .then((divisions) => {
@@ -71,3 +73,34 @@ export const GetDivisions = async (req, res) => {
             });
         });
 };
+
+export const DeleteDivision = async (req, res) => {
+    const userId = req.params.userId;
+    const divisionId = req.params.divisionId;
+
+    // Check if the authenticated user ID matches the user ID in the URL
+    if (req.user.id !== userId) {
+        return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    Division.findOneAndDelete(
+        { _id: divisionId, user: userId },
+    )
+        .then((result) => {
+            if (!result) {
+                return res.status(404).json({ message: 'Division not found' });
+            }
+            // Remove the division ID from the user's divisions array
+            User.findByIdAndUpdate(userId, {
+                $pull: { divisions: divisionId }
+            }).exec();
+
+            res.json({ message: 'Division deleted successfully', division: result });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                error,
+            });
+        });
+};
+
