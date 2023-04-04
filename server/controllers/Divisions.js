@@ -79,9 +79,7 @@ export const DeleteDivision = async (req, res) => {
     const divisionId = req.params.divisionId;
 
     // Check if the authenticated user ID matches the user ID in the URL
-    if (req.user.id !== userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
+
 
     Division.findOneAndDelete(
         { _id: divisionId, user: userId },
@@ -103,4 +101,5 @@ export const DeleteDivision = async (req, res) => {
             });
         });
 };
+
 

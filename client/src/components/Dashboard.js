@@ -27,7 +27,6 @@ const Dashboard = ({ darkModeValue }) => {
             const decoded = jwt_decode(response.data.accessToken);
             setName(decoded.name);
             setUserId(decoded.userId);
-            console.log(decoded.userId);
             setExpire(decoded.exp);
         } catch (error) {
             if (error.response) {
@@ -54,13 +53,14 @@ const Dashboard = ({ darkModeValue }) => {
     });
 
     function showAlertForDivision(title, text, icon) {
-        swal({
+        const promise = swal({
             title: title,
             text: text,
             icon: icon,
             buttons: true,
             dangerMode: true,
-        })
+        });
+        return promise;
     }
 
     const getAllDivisions = () => {
@@ -69,7 +69,6 @@ const Dashboard = ({ darkModeValue }) => {
             const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
             // update the state variable once the response is received
             result.then((response) => {
-                console.log(response.data.divisions[0]);
                 setDivisions(response.data.divisions);
             });
             // Note: You should not access `divisons` immediately after `setDivisions`, as it's an asynchronous operation.
@@ -77,6 +76,7 @@ const Dashboard = ({ darkModeValue }) => {
             return result;
         } catch (error) {
             console.log(error);
+            showAlertForDivision("Error", error, "error");
         }
     };
 
@@ -87,30 +87,29 @@ const Dashboard = ({ darkModeValue }) => {
                 category: category,
                 budget: budget
             });
-            console.log('added successfully');
             showAlertForDivision("Added successfully", "You added a new division", "success");
         } catch (error) {
             console.log(error);
         }
     }
 
-
     const handleModify = () => {
-
     }
 
     const handleDelete = async (id) => {
-        try {
-            const result = await axiosJWT.delete(`http://localhost:5000/${userId}/divisions/${id}`);
-            console.log(result);
-            // Remove the deleted division from the state
-            setDivisions(divisons.filter((division) => division._id !== id));
-        } catch (error) {
-            console.log(error);
-        }
+        showAlertForDivision("Delete division", "Are you sure you want to delete this division", "warning").then((willDelete) => {
+            if (willDelete) {
+                swal("Delete successfully", "Delete", "success");
+                try {
+                    axiosJWT.delete(`http://localhost:5000/${userId}/divisions/${id}`);
+                    setDivisions(divisons.filter((division) => division._id !== id));
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        });
+
     };
-
-
 
     return (
         <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
