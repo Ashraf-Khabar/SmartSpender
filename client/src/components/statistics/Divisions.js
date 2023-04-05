@@ -4,14 +4,9 @@ import { Pie } from 'react-chartjs-2';
 import axios, { Axios } from 'axios';
 import jwt_decode from "jwt-decode";
 import { Link, useHistory } from 'react-router-dom';
-import swal from "sweetalert";
-import swal2 from "sweetalert2";
+import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-
-
-
 
 const Divisions = ({ darkModeValue }) => {
     const [pieData, setPieData] = useState({
@@ -26,19 +21,30 @@ const Divisions = ({ darkModeValue }) => {
             }
         ]
     });
+
+    const [barData, setbarData] = useState({
+        labels: [],
+        datasets: [
+            {
+                label: [],
+                data: [],
+                backgroundColor: [],
+                borderColor: [],
+                borderWidth: 1
+            }
+        ]
+    });
+
     const [divisions, setDivisions] = useState([]);
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [userId, setUserId] = useState();
-    const [category, setCategory] = useState('');
-    const [budget, setBudget] = useState();
-
     const history = useHistory();
 
     useEffect(() => {
         refreshToken();
-        getAllDivisions();
+        getAllDivisionsForPie();
     }, [userId, divisions]);
 
     const refreshToken = async () => {
@@ -73,7 +79,7 @@ const Divisions = ({ darkModeValue }) => {
     });
 
 
-    const getAllDivisions = () => {
+    const getAllDivisionsForPie = () => {
         try {
             const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
             result.then((response) => {
@@ -116,16 +122,88 @@ const Divisions = ({ darkModeValue }) => {
         }
     };
 
+    const getAllDivisionsForBar = () => {
+        try {
+            const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
+            result.then((response) => {
+                const divisions = response.data.divisions;
+                const labels = divisions.map((division) => division.category);
+                const data = divisions.map((division) => division.budget);
+                const backgroundColor = [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                ];
+                const borderColor = [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                ];
+                setbarData({
+                    labels,
+                    datasets: [
+                        {
+                            label: 'Budget',
+                            data,
+                            backgroundColor,
+                            borderColor,
+                            borderWidth: 1,
+                        }
+                    ]
+                });
+                setDivisions(divisions);
+            });
+            return result;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
 
     return (
         <>
-            {/* component */}
-            <div className="p-24 max-h-full flex flex-wrap">
-                <Pie data={pieData} />
-            </div>
+            <center>
+                <div className="bg-gray-50 dark:bg-black p-10 items-center justify-center">
+                    <div className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-800 p-4 rounded-xl border max-w-xl">
+                        <p className="text-black dark:text-white block text-xl leading-snug mt-3">
+                            This Pie chart show how much you spend on your needs :
+                        </p>
+                        <div className="">
+                            <Pie data={pieData} />
+                        </div>
+
+                        <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1" />
+                        <div className="text-gray-500 dark:text-gray-400 flex mt-3">
+                            <div className="flex items-center mr-6">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="bg-gray-50 dark:bg-black p-10 items-center justify-center">
+                    <div className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-800 p-4 rounded-xl border max-w-xl">
+                        <p className="text-black dark:text-white block text-xl leading-snug mt-3">
+                            This Pie chart show how much you spend on your needs :
+                        </p>
+                        <div className="">
+                            
+                        </div>
+
+                        <div className="border-gray-200 dark:border-gray-600 border border-b-0 my-1" />
+                        <div className="text-gray-500 dark:text-gray-400 flex mt-3">
+                            <div className="flex items-center mr-6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </center>
         </>
-
-
     )
 }
 
