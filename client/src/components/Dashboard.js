@@ -107,10 +107,6 @@ const Dashboard = ({ darkModeValue }) => {
         }
     };
 
-
-
-
-
     const handleModify = (id, categoryValue, budgetValue) => {
         swal2.fire({
             title: 'Modify',
@@ -172,10 +168,10 @@ const Dashboard = ({ darkModeValue }) => {
     return (
         <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
             <div className="overflow-x-auto">
-
                 <center>
                     <p className='text-3xl text-center font-bold'>Divisions :</p><br />
                 </center>
+                <Link className='btn btn-outline btn-success' to='/dashboard/divisionsStat'>Statistics</Link><br/><br/>
                 <table className="table table-zebra w-full">
                     <thead>
                         <tr>
