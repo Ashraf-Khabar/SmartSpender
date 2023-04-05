@@ -36,9 +36,6 @@ export const UpdateDivision = async (req, res) => {
     const divisionId = req.params.divisionId;
 
     // Check if the authenticated user ID matches the user ID in the URL
-    if (req.user.id !== userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
 
     Division.findOneAndUpdate(
         { _id: divisionId, user: userId },

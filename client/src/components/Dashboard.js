@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import swal from "sweetalert";
+import swal2 from "sweetalert2";
+
 
 const Dashboard = ({ darkModeValue }) => {
     const [name, setName] = useState('');
@@ -13,12 +15,14 @@ const Dashboard = ({ darkModeValue }) => {
     const [category, setCategory] = useState('');
     const [budget, setBudget] = useState();
 
+    const [showAllDivisions, setShowAllDivisions] = useState(false); // new state variable
+
     const history = useHistory();
 
     useEffect(() => {
         refreshToken();
         getAllDivisions();
-    }, [userId, divisons]);
+    }, [userId, divisons, showAllDivisions]);
 
     const refreshToken = async () => {
         try {
@@ -65,14 +69,18 @@ const Dashboard = ({ darkModeValue }) => {
 
     const getAllDivisions = () => {
         try {
-            // make an Axios request to fetch the divisions
             const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
-            // update the state variable once the response is received
             result.then((response) => {
-                setDivisions(response.data.divisions);
+                if (response.data.divisions.length > 5) {
+                    const firstFiveDivisions = response.data.divisions.slice(0, 5);
+                    setDivisions(firstFiveDivisions);
+                    setShowAllDivisions(true);
+                    console.log(showAllDivisions);
+                } else {
+                    setShowAllDivisions(false);
+                    setDivisions(response.data.divisions);
+                }
             });
-            // Note: You should not access `divisons` immediately after `setDivisions`, as it's an asynchronous operation.
-            // You need to return the Axios promise from this function
             return result;
         } catch (error) {
             console.log(error);
@@ -82,19 +90,58 @@ const Dashboard = ({ darkModeValue }) => {
 
     const handleAdd = async (e) => {
         e.preventDefault();
-        try {
-            const result = axiosJWT.post(`http://localhost:5000/${userId}/divisions`, {
-                category: category,
-                budget: budget
-            });
-            showAlertForDivision("Added successfully", "You added a new division", "success");
-        } catch (error) {
-            console.log(error);
+        if (category === '' || budget === '') {
+            showAlertForDivision("Emplty fields", "You should put something on the fields", "error");
+        } else {
+            try {
+
+                const result = axiosJWT.post(`http://localhost:5000/${userId}/divisions`, {
+                    category: category,
+                    budget: budget
+                });
+                showAlertForDivision("Added successfully", "You added a new division", "success");
+            } catch (error) {
+                console.log(error);
+            }
         }
     }
 
-    const handleModify = () => {
-    }
+    const handleModify = (id) => {
+        swal2.fire({
+            title: 'Modify',
+            html: `
+            <form>
+              <div class="form-group">
+                <label for="category">category</label>
+                <input  className='input input-bordered input-success w-full max-w-xs' type="text" class="form-control" id="category" aria-describedby="category" placeholder="category">
+              </div>
+              <div class="form-group">
+                <label for="budget">budget</label>
+                <input  className='input input-bordered input-success w-full max-w-xs' type="number" class="form-control" id="budget" placeholder="budget">
+              </div>
+            </form>
+          `,
+            confirmButtonText: 'Save',
+            showCancelButton: true,
+            cancelButtonText: 'Cancel',
+            focusConfirm: false,
+            preConfirm: () => {
+                // handle form submission
+                const category = document.querySelector('category').value;
+                const budget = document.querySelector('budget').value;
+                try {
+                    const result = axiosJWT.put(`http://localhost:5000/${userId}/divisions/${id}`, {
+                        category: category,
+                        budget: budget
+                    });
+                    showAlertForDivision("Added successfully", "You added a new division", "success");
+                } catch (error) {
+                    console.log(error);
+                }
+            }
+        });
+    };
+
 
     const handleDelete = async (id) => {
         showAlertForDivision("Delete division", "Are you sure you want to delete this division", "warning").then((willDelete) => {
@@ -135,11 +182,10 @@ const Dashboard = ({ darkModeValue }) => {
                                     <td>{division.budget} DH</td>
                                     <td>
                                         <button className='btn btn-outline btn-success' onClick={() => handleDelete(division._id)}>Delete</button>
-                                        <button className='btn btn-outline btn-success' onClick={() => handleModify(division)}>Modify</button>
+                                        <button className='btn btn-outline btn-success' onClick={() => handleModify(division._id)}>Modify</button>
                                     </td>
                                 </tr>
                             ))
-
                         }
                         <tr>
                             <td>{divisons.length + 1}</td>
@@ -148,7 +194,13 @@ const Dashboard = ({ darkModeValue }) => {
                             <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
                         </tr>
                     </tbody>
+                    <br />
                 </table>
+                {
+                    showAllDivisions && (
+                        <Link className='btn btn-outline btn-success' >See more</Link>
+                    )
+                }
             </div>
         </div>
 
