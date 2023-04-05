@@ -65,7 +65,7 @@ const Dashboard = ({ darkModeValue }) => {
             dangerMode: true,
         });
         return promise;
-    }
+    };
 
     const getAllDivisions = () => {
         try {
@@ -104,7 +104,7 @@ const Dashboard = ({ darkModeValue }) => {
                 console.log(error);
             }
         }
-    }
+    };
 
     const handleModify = (id) => {
         swal2.fire({
@@ -141,7 +141,6 @@ const Dashboard = ({ darkModeValue }) => {
             }
         });
     };
-
 
     const handleDelete = async (id) => {
         showAlertForDivision("Delete division", "Are you sure you want to delete this division", "warning").then((willDelete) => {
