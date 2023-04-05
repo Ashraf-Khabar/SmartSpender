@@ -106,29 +106,36 @@ const Dashboard = ({ darkModeValue }) => {
         }
     };
 
-    const handleModify = (id) => {
+    const handleModify = (id, categoryValue, budgetValue) => {
         swal2.fire({
             title: 'Modify',
             html: `
-            <form>
-              <div class="form-group">
-                <label for="category">category</label>
-                <input  className='input input-bordered input-success w-full max-w-xs' type="text" class="form-control" id="category" aria-describedby="category" placeholder="category">
-              </div>
-              <div class="form-group">
-                <label for="budget">budget</label>
-                <input  className='input input-bordered input-success w-full max-w-xs' type="number" class="form-control" id="budget" placeholder="budget">
-              </div>
-            </form>
-          `,
+                <div class="max-w-md mx-auto bg-gray-800 text-white p-6 rounded-lg">
+                    <form>
+                        <div class="mb-4">
+                            <label class="block font-bold mb-2" for="category">
+                                Category
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Category" value="${categoryValue}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-bold mb-2" for="budget">
+                                Budget
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="budget" type="number" placeholder="Budget" value="${budgetValue}">
+                        </div>
+                    </form>
+                </div>
+            `,
+            confirmButtonColor: '#34D399',
             confirmButtonText: 'Save',
             showCancelButton: true,
             cancelButtonText: 'Cancel',
             focusConfirm: false,
             preConfirm: () => {
                 // handle form submission
-                const category = document.querySelector('category').value;
-                const budget = document.querySelector('budget').value;
+                const category = document.querySelector('#category').value;
+                const budget = document.querySelector('#budget').value;
                 try {
                     const result = axiosJWT.put(`http://localhost:5000/${userId}/divisions/${id}`, {
                         category: category,
@@ -181,7 +188,7 @@ const Dashboard = ({ darkModeValue }) => {
                                     <td>{division.budget} DH</td>
                                     <td>
                                         <button className='btn btn-outline btn-success' onClick={() => handleDelete(division._id)}>Delete</button>
-                                        <button className='btn btn-outline btn-success' onClick={() => handleModify(division._id)}>Modify</button>
+                                        <button className='btn btn-outline btn-success' onClick={() => handleModify(division._id, division.category, division.budget)}>Modify</button>
                                     </td>
                                 </tr>
                             ))
@@ -202,7 +209,6 @@ const Dashboard = ({ darkModeValue }) => {
                 }
             </div>
         </div>
-
     )
 }
 
