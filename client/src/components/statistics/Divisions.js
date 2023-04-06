@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const Divisions = ({ darkModeValue }) => {
+const DivisionsStat = ({ darkModeValue }) => {
     const [pieData, setPieData] = useState({
         labels: [],
         datasets: [
@@ -144,5 +144,5 @@ const Divisions = ({ darkModeValue }) => {
     )
 }
 
-export default Divisions;
+export default DivisionsStat;
 

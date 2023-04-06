@@ -8,7 +8,8 @@ import styles from "./index.css";
 import { useState } from "react";
 import Footer from "./components/Footer";
 import Setting from "./components/Setting/Setting";
-import Divisions from "./components/statistics/Divisions";
+import DivisionsStat from "./components/statistics/Divisions";
+import Divisions from "./components/dashboard/Divisions";
 
 function App() {
 
@@ -36,7 +37,10 @@ function App() {
           <Route path="/Setting">
             <Setting darkModeValue={darkModeValue} />
           </Route>
-          <Route path="/dashboard/divisionsStat">
+          <Route exact path="/dashboard/divisionsStat">
+            <DivisionsStat darkModeValue={darkModeValue} />
+          </Route>
+          <Route path="/dashboard/divisions">
             <Divisions darkModeValue={darkModeValue} />
           </Route>
         </Switch>

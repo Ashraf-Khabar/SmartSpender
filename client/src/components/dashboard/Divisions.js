@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React from "react";
+import { useState, useEffect } from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { Link, useHistory } from 'react-router-dom';
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-
-
-const Dashboard = ({ darkModeValue }) => {
+const Divisions = ({ darkModeValue }) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -72,15 +71,7 @@ const Dashboard = ({ darkModeValue }) => {
         try {
             const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
             result.then((response) => {
-                if (response.data.divisions.length > 5) {
-                    const firstFiveDivisions = response.data.divisions.slice(0, 5);
-                    setDivisions(firstFiveDivisions);
-                    setShowAllDivisions(true);
-                    console.log(showAllDivisions);
-                } else {
-                    setShowAllDivisions(false);
-                    setDivisions(response.data.divisions);
-                }
+                setDivisions(response.data.divisions);
             });
             return result;
         } catch (error) {
@@ -164,7 +155,6 @@ const Dashboard = ({ darkModeValue }) => {
         });
 
     };
-
     return (
         <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
             <div className="overflow-x-auto">
@@ -211,7 +201,7 @@ const Dashboard = ({ darkModeValue }) => {
                 }
             </div>
         </div>
-    )
+    );
 }
 
-export default Dashboard
+export default Divisions; 
