@@ -8,7 +8,7 @@ mongoose.connect('mongodb+srv://ashraf:1453@cluster0.ujzqpy7.mongodb.net/?retryW
 const db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('Connected to MongoDB!');
 });
 

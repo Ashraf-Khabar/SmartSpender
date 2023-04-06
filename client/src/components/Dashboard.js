@@ -210,49 +210,6 @@ const Dashboard = ({ darkModeValue }) => {
                     )
                 }
             </div>
-            <div className="overflow-x-auto">
-                <center>
-                    <p className='text-3xl text-center font-bold'>Divisions :</p><br />
-                </center>
-                <Link className='btn btn-outline btn-success' to='/dashboard/divisionsStat'>Statistics</Link><br /><br />
-                <table className="table table-zebra w-full">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>category</th>
-                            <th>budget</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            divisons.map((division, index) => (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{division.category}</td>
-                                    <td>{division.budget} DH</td>
-                                    <td>
-                                        <button className='btn btn-outline btn-success' onClick={() => handleDelete(division._id)}>Delete</button>
-                                        <button className='btn btn-outline btn-success' onClick={() => handleModify(division._id, division.category, division.budget)}>Modify</button>
-                                    </td>
-                                </tr>
-                            ))
-                        }
-                        <tr>
-                            <td>{divisons.length + 1}</td>
-                            <td><input name='category' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setCategory(e.target.value)} /></td>
-                            <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setBudget(e.target.value)} /></td>
-                            <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
-                        </tr>
-                    </tbody>
-                    <br />
-                </table>
-                {
-                    showAllDivisions && (
-                        <Link className='btn btn-outline btn-success' >See more</Link>
-                    )
-                }
-            </div>
         </div>
     )
 }
