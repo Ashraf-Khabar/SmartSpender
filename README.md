@@ -1,7 +1,9 @@
-ENSAT Internship Application
+TimeSpender Application
 ============================
 
-<img src="https://img.shields.io/badge/Made%20by-Achraf%20Khabar-blue" alt="made by Achraf khabar"> <img src="https://img.shields.io/badge/Made%20by-Kaouthar%20bouslim-blue" alt="made by Kawtar Bouslim"> <img src="https://img.shields.io/badge/Made%20by-Nahid%20Chaoui-blue" alt="made by Nahid Chaoui"> <img src="https://img.shields.io/badge/Made%20by-Abir%20el%20bouzayani-blue" alt="made by Abir el bouzayani"> <img src="https://img.shields.io/badge/Framed%20by-Mr.%20Hassan%20Badir-white" alt="Framed by Mr. Hassan Badir">
+<img src="https://img.shields.io/badge/Made%20by-Achraf%20Khabar-blue" alt="made by Achraf khabar"> <img src="https://img.shields.io/badge/Made%20by-Kaouthar%20bouslim-blue" alt="made by Kawtar Bouslim"> <img src="https://img.shields.io/badge/Made%20by-Nahid%20Chaoui-blue" alt="made by Nahid Chaoui"> <img src="https://img.shields.io/badge/Made%20by-Abir%20el%20bouzayani-blue" alt="made by Abir el bouzayani"> 
+<img src="https://img.shields.io/badge/Made%20by-Khouloud%20Cherrat-blue" alt="made by Khouloud Cherrat"> 
+<img src="https://img.shields.io/badge/Framed%20by-Mr.%20Hassan%20Badir-white" alt="Framed by Mr. Hassan Badir">
 
 <p align="center">
   <a href="https://nodejs.org/en/"> <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png" alt="Node.js" height="70"></a>
