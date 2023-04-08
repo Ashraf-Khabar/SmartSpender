@@ -3,7 +3,7 @@ import { getUsers, Register, Login, Logout, Upload, getUserImage } from "../cont
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 import {AddDivision, UpdateDivision, GetDivisions, DeleteDivision} from "../controllers/Divisions.js";
-import {AddExpense, GetExpenses, UpdateExpense} from "../controllers/Expenses.js";
+import {AddExpense, GetExpenses, UpdateExpense, DeleteExpense} from "../controllers/Expenses.js";
 import {AddCredit, GetCredits, UpdateCredit} from "../controllers/Credits.js";
 
 const router = express.Router();
@@ -27,6 +27,7 @@ router.delete('/:userId/divisions/:divisionId', DeleteDivision);
 router.put('/:userId/expenses/:expenseId', UpdateExpense);
 router.post('/:userId/expenses', AddExpense);
 router.get('/:userId/expenses', GetExpenses);
+router.delete('/:userId/expenses/:expenseId', DeleteExpense);
 
 /* Credit routing */ 
 router.put('/:userId/credits/:creditId', UpdateCredit);

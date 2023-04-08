@@ -6,23 +6,23 @@ import { Link, useHistory } from 'react-router-dom';
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-const Divisions = ({ darkModeValue }) => {
+const Expenses = ({ darkModeValue }) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
     const [userId, setUserId] = useState();
-    const [divisons, setDivisions] = useState([]);
-    const [category, setCategory] = useState('');
-    const [budget, setBudget] = useState();
+    const [expenses, setExpenses] = useState([]);
+    const [description, setDescription] = useState('');
+    const [amount, setAmount] = useState();
 
-    const [showAllDivisions, setShowAllDivisions] = useState(false); // new state variable
+    const [showAllExpenses, setShowAllExpenses] = useState(false); // new state variable
 
     const history = useHistory();
 
     useEffect(() => {
         refreshToken();
-        getAllDivisions();
-    }, [userId, divisons, showAllDivisions]);
+        getAllExpenses();
+    }, [userId, expenses, showAllExpenses]);
 
     const refreshToken = async () => {
         try {
@@ -56,7 +56,7 @@ const Divisions = ({ darkModeValue }) => {
         return Promise.reject(error);
     });
 
-    function showAlertForDivision(title, text, icon) {
+    function showAlertForExpenses(title, text, icon) {
         const promise = swal({
             title: title,
             text: text,
@@ -67,54 +67,54 @@ const Divisions = ({ darkModeValue }) => {
         return promise;
     };
 
-    const getAllDivisions = () => {
+    const getAllExpenses = () => {
         try {
-            const result = axiosJWT.get(`http://localhost:5000/${userId}/divisions`);
+            const result = axiosJWT.get(`http://localhost:5000/${userId}/expenses`);
             result.then((response) => {
-                setDivisions(response.data.divisions);
+                setExpenses(response.data.expenses);
             });
             return result;
         } catch (error) {
             console.log(error);
-            showAlertForDivision("Error", error, "error");
+            showAlertForExpenses("Error", error, "error");
         }
     };
 
     const handleAdd = async (e) => {
         e.preventDefault();
-        if (category === '' || budget === '') {
-            showAlertForDivision("Emplty fields", "You should put something on the fields", "error");
+        if (description === '' || amount === '') {
+            showAlertForExpenses("Emplty fields", "You should put something on the fields", "error");
         } else {
             try {
 
-                const result = axiosJWT.post(`http://localhost:5000/${userId}/divisions`, {
-                    category: category,
-                    budget: budget
+                const result = axiosJWT.post(`http://localhost:5000/${userId}/expenses`, {
+                    description: description,
+                    amount: amount
                 });
-                showAlertForDivision("Added successfully", "You added a new division", "success");
+                showAlertForExpenses("Added successfully", "You added a new expenses", "success");
             } catch (error) {
                 console.log(error);
             }
         }
     };
 
-    const handleModify = (id, categoryValue, budgetValue) => {
+    const handleModify = (id, descriptionValue, amountValue) => {
         swal2.fire({
             title: 'Modify',
             html: `
-                <div class="max-w-md mx-auto bg-gray-800 text-gray-800 p-6 rounded-lg">
+                <div class="max-w-md mx-auto bg-gray-800 text-white p-6 rounded-lg">
                     <form>
                         <div class="mb-4">
                             <label class="block font-bold mb-2" for="category">
                                 Category
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Category" value="${categoryValue}">
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Category" value="${descriptionValue}">
                         </div>
                         <div class="mb-4">
                             <label class="block font-bold mb-2" for="budget">
                                 Budget
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="budget" type="number" placeholder="Budget" value="${budgetValue}">
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-gray-700 focus:outline-none focus:shadow-outline" id="budget" type="number" placeholder="Budget" value="${amountValue}">
                         </div>
                     </form>
                 </div>
@@ -126,14 +126,14 @@ const Divisions = ({ darkModeValue }) => {
             focusConfirm: false,
             preConfirm: () => {
                 // handle form submission
-                const category = document.querySelector('#category').value;
-                const budget = document.querySelector('#budget').value;
+                const description = document.querySelector('#description').value;
+                const amount = document.querySelector('#amount').value;
                 try {
-                    const result = axiosJWT.put(`http://localhost:5000/${userId}/divisions/${id}`, {
-                        category: category,
-                        budget: budget
+                    const result = axiosJWT.put(`http://localhost:5000/${userId}/expenses/${id}`, {
+                        description: description,
+                        amount: amount
                     });
-                    showAlertForDivision("Added successfully", "You added a new division", "success");
+                    showAlertForExpenses("Added successfully", "You added a new expenses", "success");
                 } catch (error) {
                     console.log(error);
                 }
@@ -142,12 +142,12 @@ const Divisions = ({ darkModeValue }) => {
     };
 
     const handleDelete = async (id) => {
-        showAlertForDivision("Delete division", "Are you sure you want to delete this division", "warning").then((willDelete) => {
+        showAlertForExpenses("Delete division", "Are you sure you want to delete this division", "warning").then((willDelete) => {
             if (willDelete) {
                 swal("Delete successfully", "Delete", "success");
                 try {
-                    axiosJWT.delete(`http://localhost:5000/${userId}/divisions/${id}`);
-                    setDivisions(divisons.filter((division) => division._id !== id));
+                    axiosJWT.delete(`http://localhost:5000/${userId}/expenses/${id}`);
+                    setExpenses(expenses.filter((expense) => expense._id !== id));
                 } catch (error) {
                     console.log(error);
                 }
@@ -158,43 +158,43 @@ const Divisions = ({ darkModeValue }) => {
     return (
         <div className="overflow-x-auto">
             <center>
-                <p className='text-3xl text-center font-bold'>Divisions :</p><br />
+                <p className='text-3xl text-center font-bold'>Expenses :</p><br />
             </center>
             <Link className='btn btn-outline btn-success' to='/dashboard/divisionsStat'>Statistics</Link><br /><br />
             <table className="table table-zebra w-full">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>category</th>
-                        <th>budget</th>
+                        <th>description</th>
+                        <th>amount</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        divisons.map((division, index) => (
+                        expenses.map((expense, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>{division.category}</td>
-                                <td>{division.budget} DH</td>
+                                <td>{expense.description}</td>
+                                <td>{expense.amount} DH</td>
                                 <td>
-                                    <button className='btn btn-outline btn-success' onClick={() => handleDelete(division._id)}>Delete</button>
-                                    <button className='btn btn-outline btn-success' onClick={() => handleModify(division._id, division.category, division.budget)}>Modify</button>
+                                    <button className='btn btn-outline btn-success' onClick={() => handleDelete(expense._id)}>Delete</button>
+                                    <button className='btn btn-outline btn-success' onClick={() => handleModify(expense._id, expense.description, expense.amount)}>Modify</button>
                                 </td>
                             </tr>
                         ))
                     }
                     <tr>
-                        <td>{divisons.length + 1}</td>
-                        <td><input name='category' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setCategory(e.target.value)} /></td>
-                        <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setBudget(e.target.value)} /></td>
+                        <td>{expenses.length + 1}</td>
+                        <td><input name='category' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setDescription(e.target.value)} /></td>
+                        <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setAmount(e.target.value)} /></td>
                         <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
                     </tr>
                 </tbody>
                 <br />
             </table>
             {
-                showAllDivisions && (
+                showAllExpenses && (
                     <Link to='/dashboard/divisions' className='btn btn-outline btn-success' >See more</Link>
                 )
             }
@@ -202,4 +202,5 @@ const Divisions = ({ darkModeValue }) => {
     );
 }
 
-export default Divisions; 
+export default Expenses;
+

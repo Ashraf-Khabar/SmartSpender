@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const expenseSchema = new mongoose.Schema(
     {
-        name: {
+        description: {
             type: String,
             required: true,
         },
