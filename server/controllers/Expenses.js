@@ -81,7 +81,7 @@ export const DeleteExpense = async (req, res) => {
     // Check if the authenticated user ID matches the user ID in the URL
 
 
-    Division.findOneAndDelete(
+    Expense.findOneAndDelete(
         { _id: expenseId, user: userId },
     )
         .then((result) => {
