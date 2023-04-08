@@ -10,6 +10,8 @@ import Footer from "./components/Footer";
 import Setting from "./components/Setting/Setting";
 import DivisionsStat from "./components/statistics/Divisions";
 import Divisions from "./components/seeMore/Divisions";
+import Expenses from "./components/seeMore/Expenses";
+import ExpensesStat from "./components/statistics/Expenses";
 
 function App() {
 
@@ -40,8 +42,14 @@ function App() {
           <Route exact path="/dashboard/divisionsStat">
             <DivisionsStat darkModeValue={darkModeValue} />
           </Route>
+          <Route exact path="/dashboard/ExpensessStat">
+            <ExpensesStat darkModeValue={darkModeValue} />
+          </Route>
           <Route path="/dashboard/divisions">
             <Divisions darkModeValue={darkModeValue} />
+          </Route>
+          <Route path="/dashboard/expenses">
+            <Expenses darkModeValue={darkModeValue} />
           </Route>
         </Switch>
         <Footer darkModeValue={darkModeValue} />

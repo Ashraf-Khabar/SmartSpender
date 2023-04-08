@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import swal from "sweetalert";
 import swal2 from "sweetalert2";
 
-const Expenses = ({ darkModeValue }) => {
+const ExpensesDash = ({ darkModeValue }) => {
     const [name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -72,6 +72,15 @@ const Expenses = ({ darkModeValue }) => {
             const result = axiosJWT.get(`http://localhost:5000/${userId}/expenses`);
             result.then((response) => {
                 setExpenses(response.data.expenses);
+                if (response.data.expenses.length > 5) {
+                    const firstFiveExpenses = response.data.expenses.slice(0, 5);
+                    setExpenses(firstFiveExpenses);
+                    setShowAllExpenses(true);
+                    console.log(showAllExpenses);
+                } else {
+                    setShowAllExpenses(false);
+                    setExpenses(response.data.expenses);
+                }
             });
             return result;
         } catch (error) {
@@ -156,53 +165,51 @@ const Expenses = ({ darkModeValue }) => {
 
     };
     return (
-        <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
-            <div className="overflow-x-auto">
-                <center>
-                    <p className='text-3xl text-center font-bold'>Expenses :</p><br />
-                </center>
-                <Link className='btn btn-outline btn-success' to='/dashboard/ExpensessStat'>Statistics</Link><br /><br />
-                <table className="table table-zebra w-full">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>description</th>
-                        <th>amount</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {
-                        expenses.map((expense, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{expense.description}</td>
-                                <td>{expense.amount} DH</td>
-                                <td>
-                                    <button className='btn btn-outline btn-success' onClick={() => handleDelete(expense._id)}>Delete</button>
-                                    <button className='btn btn-outline btn-success' onClick={() => handleModify(expense._id, expense.description, expense.amount)}>Modify</button>
-                                </td>
-                            </tr>
-                        ))
-                    }
-                    <tr>
-                        <td>{expenses.length + 1}</td>
-                        <td><input name='category' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setDescription(e.target.value)} /></td>
-                        <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setAmount(e.target.value)} /></td>
-                        <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
-                    </tr>
-                    </tbody>
-                    <br />
-                </table>
+        <div className="overflow-x-auto">
+            <center>
+                <p className='text-3xl text-center font-bold'>Expenses :</p><br />
+            </center>
+            <Link className='btn btn-outline btn-success' to='/dashboard/ExpensessStat'>Statistics</Link><br /><br />
+            <table className="table table-zebra w-full">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>description</th>
+                    <th>amount</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
                 {
-                    showAllExpenses && (
-                        <Link to='/dashboard/divisions' className='btn btn-outline btn-success' >See more</Link>
-                    )
+                    expenses.map((expense, index) => (
+                        <tr key={index}>
+                            <td>{index + 1}</td>
+                            <td>{expense.description}</td>
+                            <td>{expense.amount} DH</td>
+                            <td>
+                                <button className='btn btn-outline btn-success' onClick={() => handleDelete(expense._id)}>Delete</button>
+                                <button className='btn btn-outline btn-success' onClick={() => handleModify(expense._id, expense.description, expense.amount)}>Modify</button>
+                            </td>
+                        </tr>
+                    ))
                 }
-            </div>
+                <tr>
+                    <td>{expenses.length + 1}</td>
+                    <td><input name='category' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setDescription(e.target.value)} /></td>
+                    <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setAmount(e.target.value)} /></td>
+                    <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
+                </tr>
+                </tbody>
+                <br />
+            </table>
+            {
+                showAllExpenses && (
+                    <Link to='/dashboard/expenses' className='btn btn-outline btn-success' >See more</Link>
+                )
+            }
         </div>
     );
 }
 
-export default Expenses;
+export default ExpensesDash;
 
