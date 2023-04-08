@@ -7,8 +7,8 @@ ENSAT Internship Application
   <a href="https://nodejs.org/en/"> <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png" alt="Node.js" height="70"></a>
   <a href="https://expressjs.com"> <img src="https://cdn.worldvectorlogo.com/logos/express-1.svg" alt="Express.js" height="70"></a>
   <a href="https://reactjs.org"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js" height="70"></a>
-  <a href="https://www.mysql.com"> <img src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL" height="70"></a>
-  <a href="https://sequelize.org"><img src="https://sequelize.org/v5/manual/asset/logo-small.png" alt="Sequelize ORM" height="70"></a> 
+  <a href="https://www.Mongodb.com"> <img src="https://www.strongdm.com/hubfs/21126185/Technology%20Images/603c5eb831820c3ce6a8f057_603a1586fa052d17fc2a6929_MongoDBAtlas.png" alt="MongoDb" height="70"></a>
+  <a href="https://https://mongoosejs.com"><img src="https://tsed.io/mongoose.png" alt="Mongoose ORM" height="70"></a> 
  </p>
 
 Introduction
