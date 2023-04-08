@@ -12,6 +12,7 @@ import DivisionsStat from "./components/statistics/Divisions";
 import Divisions from "./components/seeMore/Divisions";
 import Expenses from "./components/seeMore/Expenses";
 import ExpensesStat from "./components/statistics/Expenses";
+import AboutUsPage from "./components/AboutUsPage";
 
 function App() {
 
@@ -26,6 +27,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home darkModeValue={darkModeValue} />
+          </Route>
+          <Route path="/about">
+            <AboutUsPage />
           </Route>
           <Route exact path="/login">
             <Login darkModeValue={darkModeValue} />

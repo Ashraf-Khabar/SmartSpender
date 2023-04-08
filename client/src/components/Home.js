@@ -74,10 +74,9 @@ const Home = ({ darkModeValue }) => {
                                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-slate-400">
                                             <i className="fas fa-retweet" />
                                         </div>
-                                        <h6 className="text-xl text-green-700 font-semibold">Free Revisions</h6>
+                                        <h6 className="text-xl text-green-700 font-semibold">Budget management</h6>
                                         <p className="mt-2 mb-4 text-green-700 text-blueGray-500">
-                                            Keep you user engaged by providing meaningful information.
-                                            Remember that by this time, the user is curious.
+                                            Regrouping your needs, credits, divisions and expenses in order to know exactly how much you spend and how much you earn
                                         </p>
                                     </div>
                                 </div>
@@ -88,10 +87,9 @@ const Home = ({ darkModeValue }) => {
                                         <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                                             <i className="fas fa-fingerprint" />
                                         </div>
-                                        <h6 className="text-xl text-green-700 font-semibold">Verified Company</h6>
+                                        <h6 className="text-xl text-green-700 font-semibold">Budget audit</h6>
                                         <p className="mt-2 mb-4 text-green-700 text-blueGray-500">
-                                            Write a few lines about each one. A paragraph describing a
-                                            feature will be enough. Keep you user engaged!
+                                            Statistics and charts for divisions, credits and expenses 
                                         </p>
                                     </div>
                                 </div>
