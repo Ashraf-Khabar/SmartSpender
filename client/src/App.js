@@ -9,7 +9,7 @@ import { useState } from "react";
 import Footer from "./components/Footer";
 import Setting from "./components/Setting/Setting";
 import DivisionsStat from "./components/statistics/Divisions";
-import Divisions from "./components/dashboard/Divisions";
+import Divisions from "./components/seeMore/Divisions";
 
 function App() {
 

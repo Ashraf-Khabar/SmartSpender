@@ -156,21 +156,22 @@ const Divisions = ({ darkModeValue }) => {
 
     };
     return (
-        <div className="overflow-x-auto">
-            <center>
-                <p className='text-3xl text-center font-bold'>Divisions :</p><br />
-            </center>
-            <Link className='btn btn-outline btn-success' to='/dashboard/divisionsStat'>Statistics</Link><br /><br />
-            <table className="table table-zebra w-full">
-                <thead>
+        <div data-theme={darkModeValue} className="text-center w-full mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
+            <div className="overflow-x-auto">
+                <center>
+                    <p className='text-3xl text-center font-bold'>Divisions :</p><br />
+                </center>
+                <Link className='btn btn-outline btn-success' to='/dashboard/divisionsStat'>Statistics</Link><br /><br />
+                <table className="table table-zebra w-full">
+                    <thead>
                     <tr>
                         <th></th>
                         <th>category</th>
                         <th>budget</th>
                         <th>Actions</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     {
                         divisons.map((division, index) => (
                             <tr key={index}>
@@ -190,14 +191,15 @@ const Divisions = ({ darkModeValue }) => {
                         <td><input name='budget' className='input input-bordered input-success w-full max-w-xs' type="text" onChange={(e) => setBudget(e.target.value)} /></td>
                         <td><button className='btn btn-outline btn-success' onClick={handleAdd}>Add</button></td>
                     </tr>
-                </tbody>
-                <br />
-            </table>
-            {
-                showAllDivisions && (
-                    <Link to='/dashboard/divisions' className='btn btn-outline btn-success' >See more</Link>
-                )
-            }
+                    </tbody>
+                    <br />
+                </table>
+                {
+                    showAllDivisions && (
+                        <Link to='/dashboard/divisions' className='btn btn-outline btn-success' >See more</Link>
+                    )
+                }
+            </div>
         </div>
     );
 }

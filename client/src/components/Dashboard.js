@@ -1,6 +1,6 @@
 import React from 'react'
-import Expenses from './dashboard/Expenses';
-import DivisionsDash from './DivisionsDash';
+import Expenses from './seeMore/Expenses';
+import DivisionsDash from './dashboard/DivisionsDash';
 
 
 const Dashboard = ({ darkModeValue }) => {

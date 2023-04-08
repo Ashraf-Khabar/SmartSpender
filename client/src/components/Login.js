@@ -17,7 +17,7 @@ const Login = ({ darkModeValue }) => {
                 email: email,
                 password: password
             });
-            history.push("/dashboard");
+            history.push("/seeMore");
             window.location.reload();
 
         } catch (error) {
