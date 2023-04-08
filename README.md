@@ -9,7 +9,7 @@ TimeSpender Application
   <a href="https://nodejs.org/en/"> <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png" alt="Node.js" height="70"></a>
   <a href="https://expressjs.com"> <img src="https://cdn.worldvectorlogo.com/logos/express-1.svg" alt="Express.js" height="70"></a>
   <a href="https://reactjs.org"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js" height="70"></a>
-  <a href="https://www.Mongodb.com"> <img src="https://www.strongdm.com/hubfs/21126185/Technology%20Images/603c5eb831820c3ce6a8f057_603a1586fa052d17fc2a6929_MongoDBAtlas.png" alt="MongoDb" height="70"></a>
+  <a href="https://www.Mongodb.com"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/2560px-MongoDB_Logo.svg.png" alt="MongoDb" height="70"></a>
   <a href="https://https://mongoosejs.com"><img src="https://tsed.io/mongoose.png" alt="Mongoose ORM" height="70"></a> 
  </p>
 
@@ -32,8 +32,8 @@ Exigences
 - Node.js
 - React.js
 - Express.js
-- Sequelize
-- MySQL
+- Mongo DB Atlas
+- Mongoose
 
 Installation
 ------------
