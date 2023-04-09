@@ -1,4 +1,9 @@
 import React from 'react';
+import Ashraf from '../img/Ashraf.jpg';
+import Abir from '../img/Abir.jpg';
+import Kawter from '../img/Kawter.jpg';
+import Nahid from '../img/Nahid.jpg';
+import Khouloud from '../img/khouloud.jpg';
 
 const AboutUsPage = ({ darkModeValue }) => {
     return (
@@ -34,18 +39,37 @@ const AboutUsPage = ({ darkModeValue }) => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="bg-white shadow rounded-lg">
                                 <div className="p-6">
-                                    <img className="w-32 h-32 rounded-full mx-auto" src="https://avatars.githubusercontent.com/u/95541956?v=4" alt="Team member 1" />
-                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Achraf KHABAR</h4>
-                                    <p className="mt-2 text-gray-600">Développeur backend, API architect and MongoDb ATLAS cloud manager</p>
-                                    <p className="mt-2 text-gray-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <img className="w-32 h-32 rounded-full mx-auto" src={Ashraf} alt="Team member 1" />
+                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Achraf Khabar</h4>
+                                    <p className="mt-2 text-gray-600">Développeur backend API, Mongodb ATLAS Cloud administrator</p>
                                 </div>
                             </div>
                             <div className="bg-white shadow rounded-lg">
                                 <div className="p-6">
-                                    <img className="w-32 h-32 rounded-full mx-auto" src="https://via.placeholder.com/150" alt="Team member 2" />
-                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Jane Smith</h4>
-                                    <p className="mt-2 text-gray-600">Développeur backend</p>
-                                    <p className="mt-2 text-gray-600">Sed ut perspiciatis unde omnis iste natus</p>
+                                    <img className="w-32 h-32 rounded-full mx-auto" src={Abir} alt="Team member 2" />
+                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Abir El Bouzayani</h4>
+                                    <p className="mt-2 text-gray-600">Testeur et responsable sur la conception logiciel</p>
+                                </div>
+                            </div>
+                            <div className="bg-white shadow rounded-lg">
+                                <div className="p-6">
+                                    <img className="w-32 h-32 rounded-full mx-auto" src={Kawter} alt="Team member 2" />
+                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Kaouthar Bousslim</h4>
+                                    <p className="mt-2 text-gray-600">Developpeur backend API et responsable sur le lien entre backend et frontend</p>
+                                </div>
+                            </div>
+                            <div className="bg-white shadow rounded-lg">
+                                <div className="p-6">
+                                    <img className="w-32 h-32 rounded-full mx-auto" src={Nahid} alt="Team member 2" />
+                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Nahid Chaoui</h4>
+                                    <p className="mt-2 text-gray-600">Developpeur frontend et responsable sur le fetch des API</p>
+                                </div>
+                            </div>
+                            <div className="bg-white shadow rounded-lg">
+                                <div className="p-6">
+                                    <img className="w-32 h-32 rounded-full mx-auto" src={Khouloud} alt="Team member 2" />
+                                    <h4 className="mt-4 text-xl font-semibold text-gray-800">Khouloud Cherrat</h4>
+                                    <p className="mt-2 text-gray-600">Developpeur frontend et responsable sur le fetch des API</p>
                                 </div>
                             </div>
                         </div>

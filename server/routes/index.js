@@ -5,6 +5,8 @@ import { refreshToken } from "../controllers/RefreshToken.js";
 import {AddDivision, UpdateDivision, GetDivisions, DeleteDivision} from "../controllers/Divisions.js";
 import {AddExpense, GetExpenses, UpdateExpense, DeleteExpense} from "../controllers/Expenses.js";
 import {AddCredit, DeleteCredit, GetCredits, UpdateCredit} from "../controllers/Credits.js";
+import { CommentBog, CreateNewBlog, DeleteBlogById, GetAllBlogs, GetBlogById, LikeBlog, UpdateBlogById } from "../controllers/Blogs.js";
+import { getBlog } from "../middleware/GetBlog.js";
 
 const router = express.Router();
 
@@ -35,5 +37,13 @@ router.post('/:userId/credits', AddCredit);
 router.get('/:userId/credits', GetCredits);
 router.delete('/:userId/credits/:creditId', DeleteCredit);
 
+/* Blogs routing */ 
+router.get('/blogs', GetAllBlogs);
+router.get('/blogs/:id', getBlog, GetBlogById);
+router.post('/blogs', CreateNewBlog);
+router.patch('/blogs/:id', getBlog, UpdateBlogById);
+router.delete('/blogs/:id', getBlog, DeleteBlogById);
+router.post('/blogs/:id/like', getBlog, LikeBlog);
+router.post('/blogs/:id/comments', getBlog, CommentBog);
 
 export default router;

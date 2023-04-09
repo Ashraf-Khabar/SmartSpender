@@ -13,6 +13,7 @@ import Divisions from "./components/seeMore/Divisions";
 import Expenses from "./components/seeMore/Expenses";
 import ExpensesStat from "./components/statistics/Expenses";
 import AboutUsPage from "./components/AboutUsPage";
+import BlogTest from "./components/blogs";
 
 function App() {
 
@@ -25,6 +26,9 @@ function App() {
       <BrowserRouter>
         <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked} userId={userId} setUserId={setUserId} />
         <Switch>
+          <Route exact path="/Blogs">
+            <BlogTest  />
+          </Route>
           <Route exact path="/">
             <Home darkModeValue={darkModeValue} />
           </Route>
