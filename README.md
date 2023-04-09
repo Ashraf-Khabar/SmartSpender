@@ -14,14 +14,19 @@ TimeSpender Application
 Introduction
 ------------
 
-Cette application web met en relation les étudiants de l'ENSAT (Ecole Nationale des Sciences Appliquées à Tanger) avec des entreprises pour des stages. Les entreprises peuvent créer un compte et ajouter des offres de stage, permettant aux étudiants de l'ENSAT de postuler pour les postes. L'application est construite en utilisant Node.js, React.js, Express.js, Sequelize, et MySQL.
+Smart Spender is a web application designed to help users manage and organize their money in order to avoid financial issues. In addition to its budget tracking features, Smart Spender also includes a blog to provide financial management tips and tricks.
+
+Smart Spender is built using Node.js, React.js, Express.js, Monggose, and Mongodb Atlas. These technologies provide a robust and scalable foundation for the app, allowing for efficient data processing and storage. The app is designed to be user-friendly, with a clean and intuitive interface that makes it easy for users to track their spending and achieve their financial goals.
 
 Caractéristiques
 --------
 
-- Met en relation les étudiants de l'ENSAT avec des entreprises pour des stages.
-- Les entreprises peuvent créer des comptes et ajouter des offres de stage
-- Construit avec Node.js, React.js, Express.js, Sequelize et MySQL.
+-   User registration and login: Users can create accounts and securely log in to access the app's features.
+-   Budget tracking: Users can track their income and expenses, set budgets, and receive alerts when they exceed their budget.
+-   Expense categorization: Users can categorize their expenses to get a clear picture of their spending habits.
+-   Goal setting: Users can set financial goals, such as saving for a vacation or paying off debt, and track their progress towards those goals.
+-   Spending analysis: Provides users with detailed insights and analysis of their spending habits, including charts and graphs that make it easy to understand their financial situation.
+-   Financial management blog: Users can read articles on a variety of topics related to personal finance and money management, including budgeting tips, saving strategies, debt reduction techniques, investing advice, retirement planning, credit score improvement, frugal living ideas, and mindset shifts for better financial health.
 
 
 Exigences
