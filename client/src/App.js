@@ -26,8 +26,8 @@ function App() {
       <BrowserRouter>
         <Navbar isChecked={isChecked} setDarkModeValue={setDarkModeValue} darkModeValue={darkModeValue} setIsChecked={setIsChecked} userId={userId} setUserId={setUserId} />
         <Switch>
-          <Route exact path="/Blogs">
-            <BlogTest  />
+          <Route exact path="/dashboard/Blogs">
+            <BlogTest darkModeValue={darkModeValue}  />
           </Route>
           <Route exact path="/">
             <Home darkModeValue={darkModeValue} />
