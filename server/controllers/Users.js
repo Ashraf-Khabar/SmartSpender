@@ -21,7 +21,6 @@ export const Upload = async (req, res) => {
 export const getUserImage = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.email });
-    console.log(user);
     if (!user) {
       return res.status(404).send('User not found');
     }
@@ -32,7 +31,6 @@ export const getUserImage = async (req, res) => {
 
     res.set('Content-Type', 'text/plain');
     res.send(user.image);
-    console.log(user.image);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);

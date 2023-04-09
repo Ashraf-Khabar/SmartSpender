@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const creditSchema = new mongoose.Schema(
     {
-        name: {
+        creditName: {
             type: String,
             required: true,
         },

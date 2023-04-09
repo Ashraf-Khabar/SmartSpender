@@ -29,7 +29,7 @@ function App() {
             <Home darkModeValue={darkModeValue} />
           </Route>
           <Route path="/about">
-            <AboutUsPage />
+            <AboutUsPage darkModeValue={darkModeValue} />
           </Route>
           <Route exact path="/login">
             <Login darkModeValue={darkModeValue} />

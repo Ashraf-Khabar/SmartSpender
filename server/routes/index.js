@@ -4,7 +4,7 @@ import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
 import {AddDivision, UpdateDivision, GetDivisions, DeleteDivision} from "../controllers/Divisions.js";
 import {AddExpense, GetExpenses, UpdateExpense, DeleteExpense} from "../controllers/Expenses.js";
-import {AddCredit, GetCredits, UpdateCredit} from "../controllers/Credits.js";
+import {AddCredit, DeleteCredit, GetCredits, UpdateCredit} from "../controllers/Credits.js";
 
 const router = express.Router();
 
@@ -33,5 +33,7 @@ router.delete('/:userId/expenses/:expenseId', DeleteExpense);
 router.put('/:userId/credits/:creditId', UpdateCredit);
 router.post('/:userId/credits', AddCredit);
 router.get('/:userId/credits', GetCredits);
+router.delete('/:userId/credits/:creditId', DeleteCredit);
+
 
 export default router;

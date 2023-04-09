@@ -1,12 +1,13 @@
 import User from "../models/UserModel.js";
 import Credit from "../models/CreditModel.js";
+import Expense from "../models/ExpenseModel.js";
 
 export const AddCredit = async (req, res) => {
-    const { description, amount } = req.body;
+    const { creditName, amount } = req.body;
     const userId = req.params.userId;
 
     const credit = new Credit({
-        description,
+        creditName,
         amount,
         user: userId
     });
@@ -31,18 +32,15 @@ export const AddCredit = async (req, res) => {
 };
 
 export const UpdateCredit = async (req, res) => {
-    const { description, amount } = req.body;
+    const { creditName, amount } = req.body;
     const userId = req.params.userId;
     const creditId = req.params.creditId;
 
     // Check if the authenticated user ID matches the user ID in the URL
-    if (req.user.id !== userId) {
-        return res.status(401).json({ message: 'Unauthorized' });
-    }
 
     Credit.findOneAndUpdate(
         { _id: creditId, user: userId },
-        { $set: { description, amount } },
+        { $set: { creditName, amount } },
         { new: true }
     )
         .then((result) => {
@@ -73,3 +71,50 @@ export const GetCredits = async (req, res) => {
             });
         });
 };
+
+export const DeleteCredit = async (req, res) => {
+    const userId = req.params.userId;
+    const creditId = req.params.creditId;
+
+    // Check if the authenticated user ID matches the user ID in the URL
+
+    Credit.findOneAndDelete(
+        { _id: creditId, user: userId },
+    )
+        .then((result) => {
+            if (!result) {
+                return res.status(404).json({ message: 'Credit not found' });
+            }
+            // Remove the division ID from the user's divisions array
+            User.findByIdAndUpdate(userId, {
+                $pull: { expenses: creditId }
+            }).exec();
+
+            res.json({ message: 'Credit deleted successfully', credit: result });
+        })
+        .catch((error) => {
+            res.status(500).json({
+                error,
+            });
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

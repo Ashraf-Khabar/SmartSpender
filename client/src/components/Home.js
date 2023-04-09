@@ -98,7 +98,6 @@ const Home = ({ darkModeValue }) => {
                     </div>
                 </section>
             </section>
-
         </div>
     )
 }
