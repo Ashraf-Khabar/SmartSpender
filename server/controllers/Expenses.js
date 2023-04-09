@@ -1,7 +1,6 @@
 import User from "../models/UserModel.js";
 import Expense from "../models/ExpenseModel.js";
 
-
 export const UpdateExpense = async (req, res) => {
     const { description, amount } = req.body;
     const userId = req.params.userId;
@@ -79,7 +78,6 @@ export const DeleteExpense = async (req, res) => {
     const expenseId = req.params.expenseId;
 
     // Check if the authenticated user ID matches the user ID in the URL
-
 
     Expense.findOneAndDelete(
         { _id: expenseId, user: userId },
