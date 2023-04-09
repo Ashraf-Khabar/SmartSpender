@@ -6,11 +6,9 @@ TimeSpender Application
 <img src="https://img.shields.io/badge/Framed%20by-Mr.%20Hassan%20Badir-white" alt="Framed by Mr. Hassan Badir">
 
 <p align="center">
-  <a href="https://nodejs.org/en/"> <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png" alt="Node.js" height="70"></a>
   <a href="https://expressjs.com"> <img src="https://cdn.worldvectorlogo.com/logos/express-1.svg" alt="Express.js" height="70"></a>
   <a href="https://reactjs.org"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" alt="React.js" height="70"></a>
   <a href="https://www.Mongodb.com"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/MongoDB_Logo.svg/2560px-MongoDB_Logo.svg.png" alt="MongoDb" height="70"></a>
-  <a href="https://https://mongoosejs.com"><img src="https://tsed.io/mongoose.png" alt="Mongoose ORM" height="70"></a> 
  </p>
 
 Introduction
