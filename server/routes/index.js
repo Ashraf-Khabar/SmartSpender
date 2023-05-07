@@ -10,6 +10,7 @@ import { getBlog } from "../middleware/GetBlog.js";
 
 const router = express.Router();
 
+
 /* User routing */
 router.get('/users', verifyToken, getUsers);
 router.post('/users', Register);
